@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games List</title>
+</head>
+<body>
+  <div>
+    <h2>
+      Games List
+    </h2>
+  </div>
+  
+  <div>
+    <input type="number" id="searchInput" placeholder="Max Players">
+    <button type="submit" id="searchBtn">Search</button>
+  </div>  
+
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Game</th>
+          <th>Players</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody id="gamesTableBody">
+        <% for (let name in games) { %>
+          <tr>
+            <td> <%= games[name].name %> </td>
+            <td> <%= games[name].playerCount %> </td>
+            <td> <%= games[name].category %> </td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    
+    function getMaxPlayerNumber(number) {
+      if (number) return Number(number)      
+    }
+    
+    function filterGamesByMaxPlayer() {
+      const maxPlayers = getMaxPlayerNumber(searchInput.value)
+      const tableRows = document.querySelectorAll('#gamesTableBody tr')
+      tableRows.forEach((row) => {
+        const rowMaxPlayers = row.children[1].textContent.trim()
+        if (!maxPlayers) {
+          row.style.display = '';
+        } else if (rowMaxPlayers >= maxPlayers) {
+          row.style.display = '';
+        } else if (rowMaxPlayers < maxPlayers) {
+          row.style.display = 'none'
+        }
+      });
+      }
+    searchBtn.addEventListener('click', filterGamesByMaxPlayer);
+    searchInput.addEventListener('keydown', (e) =>{
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        filterGamesByMaxPlayer()
+      }
+    })
+    
+  </script>
+
+</body>
+</html>
