@@ -22,16 +22,24 @@
       <thead>
         <tr>
           <th>Game</th>
-          <th>Players</th>
+          <th>Min Players</th>
+          <th>Max Players</th>
+          <th>Difficulty</th>
+          <th>Time</th>
           <th>Category</th>
+          <th>Played</th>
         </tr>
       </thead>
       <tbody id="gamesTableBody">
         <% for (let name in games) { %>
           <tr>
             <td> <%= games[name].name %> </td>
-            <td> <%= games[name].playerCount %> </td>
+            <td> <%= games[name].minPlayerCount %> </td>
+            <td> <%= games[name].maxPlayerCount %> </td>
+            <td> <%= games[name].difficulty %> </td>
+            <td> <%= games[name].time %> </td>
             <td> <%= games[name].category %> </td>
+            <td> <%= games[name].played %> </td>
           </tr>
         <% } %>
       </tbody>
