@@ -13,8 +13,14 @@
   </div>
   
   <div>
-    <input type="number" id="searchInput" placeholder="Max Players">
-    <button type="submit" id="searchBtn">Search</button>
+    <div>
+      <input type="number" id="searchInputMin" placeholder="Min Players">
+      <button type="submit" id="searchBtnMin">Search</button>
+    </div>
+    <div>
+      <input type="number" id="searchInputMax" placeholder="Max Players">
+      <button type="submit" id="searchBtnMax">Search</button>
+    </div>
   </div>  
 
   <div>
@@ -47,36 +53,61 @@
   </div>
 
   <script>
-    const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
+    const searchInputMin = document.getElementById('searchInputMin')
+    const searchBtnMin = document.getElementById('searchBtnMin')
+    const searchInputMax = document.getElementById('searchInputMax');
+    const searchBtnMax = document.getElementById('searchBtnMax');
     
     function getMaxPlayerNumber(number) {
-      if (number) return Number(number)      
+      if (number) return Number(number);      
+    };
+    function getMinPlayerNumber(number) {
+      if (number) return Number(number);
+    };
+
+    function filterGamesByMinPlayer() {
+      const minPlayers = getMinPlayerNumber(searchInputMin.value);
+      const tableRows = document.querySelectorAll('#gamesTableBody tr');
+      tableRows.forEach((row) => {
+        const rowMinPlayers = row.children[1].textContent.trim();
+        if (!minPlayers) {
+          row.style.display = '';
+        } else if (rowMinPlayers >= minPlayers) {
+          row.style.display = '';
+        } else if (rowMinPlayers < minPlayers) {
+          row.style.display = 'none';
+        }
+      });
     }
     
     function filterGamesByMaxPlayer() {
-      const maxPlayers = getMaxPlayerNumber(searchInput.value)
-      const tableRows = document.querySelectorAll('#gamesTableBody tr')
+      const maxPlayers = getMaxPlayerNumber(searchInputMax.value);
+      const tableRows = document.querySelectorAll('#gamesTableBody tr');
       tableRows.forEach((row) => {
-        const rowMaxPlayers = row.children[1].textContent.trim()
+        const rowMaxPlayers = row.children[2].textContent.trim();
         if (!maxPlayers) {
           row.style.display = '';
-        } else if (rowMaxPlayers >= maxPlayers) {
+        } else if (rowMaxPlayers <= maxPlayers) {
           row.style.display = '';
         } else if (rowMaxPlayers < maxPlayers) {
-          row.style.display = 'none'
+          row.style.display = 'none';
         }
       });
-      }
-    searchBtn.addEventListener('click', filterGamesByMaxPlayer);
-    searchInput.addEventListener('keydown', (e) =>{
+    };
+    searchBtnMin.addEventListener('click', filterGamesByMinPlayer);
+    searchInputMin.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
-        filterGamesByMaxPlayer()
+        filterGamesByMinPlayer();
       }
     })
-    
+    searchBtnMax.addEventListener('click', filterGamesByMaxPlayer);
+    searchInputMax.addEventListener('keydown', (e) =>{
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        filterGamesByMaxPlayer();
+      }
+    });
   </script>
-
 </body>
 </html>
