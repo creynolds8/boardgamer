@@ -72,9 +72,9 @@
         const rowMinPlayers = row.children[1].textContent.trim();
         if (!minPlayers) {
           row.style.display = '';
-        } else if (rowMinPlayers >= minPlayers) {
+        } else if (rowMinPlayers <= minPlayers) {
           row.style.display = '';
-        } else if (rowMinPlayers < minPlayers) {
+        } else if (rowMinPlayers > minPlayers) {
           row.style.display = 'none';
         }
       });
@@ -87,7 +87,7 @@
         const rowMaxPlayers = row.children[2].textContent.trim();
         if (!maxPlayers) {
           row.style.display = '';
-        } else if (rowMaxPlayers <= maxPlayers) {
+        } else if (rowMaxPlayers > maxPlayers) {
           row.style.display = '';
         } else if (rowMaxPlayers < maxPlayers) {
           row.style.display = 'none';
