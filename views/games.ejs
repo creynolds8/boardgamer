@@ -39,7 +39,13 @@
             <td> <%= games[name].difficulty %> </td>
             <td> <%= games[name].time %> </td>
             <td> <%= games[name].category %> </td>
-            <td> <%= games[name].played %> </td>
+            <td> 
+              <% if (games[name].played) { %>
+                <img src="https://raw.githubusercontent.com/creynolds8/boardgamer/c562b4bdcb03eea4706520e9963cba068fe21bcb/public/check-mark-4821.svg" height="12" alt="yes">
+              <% } else { %>
+                <img src="https://raw.githubusercontent.com/creynolds8/boardgamer/c562b4bdcb03eea4706520e9963cba068fe21bcb/public/error-10379.svg" height="12" alt="no">
+              <% } %>
+            </td>
           </tr>
         <% } %>
       </tbody>
