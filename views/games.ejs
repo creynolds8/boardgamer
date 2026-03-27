@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Games List</title>
+  <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/creynolds8/boardgamer/9a3a5fca2c4919b78b94037b8e472420ddc63907/public/images/favicon.svg">
+  <link rel="stylesheet" href="styles.css" type="text/css" />
 </head>
 <body>
   <div>
@@ -41,9 +43,9 @@
             <td> <%= games[name].category %> </td>
             <td> 
               <% if (games[name].played) { %>
-                <img src="https://raw.githubusercontent.com/creynolds8/boardgamer/c562b4bdcb03eea4706520e9963cba068fe21bcb/public/check-mark-4821.svg" height="12" alt="yes">
+                <img src="https://raw.githubusercontent.com/creynolds8/boardgamer/9a3a5fca2c4919b78b94037b8e472420ddc63907/public/images/check-mark.svg" height="12" alt="yes">
               <% } else { %>
-                <img src="https://raw.githubusercontent.com/creynolds8/boardgamer/c562b4bdcb03eea4706520e9963cba068fe21bcb/public/error-10379.svg" height="12" alt="no">
+                <img src="https://raw.githubusercontent.com/creynolds8/boardgamer/9a3a5fca2c4919b78b94037b8e472420ddc63907/public/images/error.svg" height="12" alt="no">
               <% } %>
             </td>
           </tr>
