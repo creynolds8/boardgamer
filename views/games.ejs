@@ -15,8 +15,14 @@
   </div>
   
   <div>
-    <input type="number" id="searchInput" placeholder="Players">
-    <button type="submit" id="searchBtn">Search</button>
+    <div>
+      <input type="number" id="searchInput" placeholder="Players">
+      <button type="submit" id="searchBtn">Search</button>
+    </div>
+    <div>
+      <label for="playedCheckbox">New Games Only</label>
+      <input type="checkbox" name="playedCheckbox" id="playedCheckbox">
+    </div>
   </div>  
 
   <div>
@@ -85,6 +91,27 @@
         filterGamesByPlayerCount();
       }
     });
+
+    const playedCheckbox = document.getElementById('playedCheckbox');
+
+    function rowIsPlayed(row) {
+      const playedIcon = row.children[6]?.querySelector('img');
+      return playedIcon?.alt === 'yes';
+    }
+
+    function sortByPlayed() {
+      const onlyPlayed = playedCheckbox.checked;
+      const tableRows = document.querySelectorAll('#gamesTableBody tr');
+      tableRows.forEach((row) => {
+        if (!onlyPlayed) {
+          row.style.display = '';
+          return;
+        }
+        row.style.display = rowIsPlayed(row) ? 'none' : '';
+      });
+    }
+
+    playedCheckbox.addEventListener('change', sortByPlayed);
   </script>
 </body>
 </html>
